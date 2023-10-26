@@ -1,36 +1,37 @@
 package com.gratlearning.searching;
+
 import java.util.Scanner;
 
-/*  
- * Linear Search 
- * Time Complexity:
- * 
- * Best TC: O(1)
- * Average TC: O(n/2)
- * Worst TC: O(n)
- * 
- * Space Complexity: O(1)
- * 
- */
-public class LinearSearch {
-	
-	public static int Search(int []arr, int value)
-	{
-		for(int i=0; i<arr.length; i++)
+public class BinarySearch {
+
+	public static int Search(int arr[], int left, int right, int search_val)
+	{		
+		if(right >= left)
 		{
-			if(arr[i] == value)
+			int mid = left + (right - left)/2;
+
+			if(arr[mid] == search_val)
 			{
-				return i;
+				System.out.println("Enter value is present in array");
+				return mid;
 			}
+			if(arr[mid] > search_val)
+			{
+				right = mid - 1;
+				return Search(arr ,left ,right, search_val);
+			}
+
+			return Search(arr, mid+1, right, search_val);		
+	
 		}
 		return -1;
 	}
 	
-			
+	
 	public static void main(String[] args) {
 		
 		int size;
-		LinearSearch obj = new LinearSearch();
+		BinarySearch obj = new BinarySearch();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Size of array");
 		size = sc.nextInt();		
@@ -44,7 +45,7 @@ public class LinearSearch {
 		System.out.println("Enter the value to be search.");
 		int value = sc.nextInt();
 		
-		int index = obj.Search(arr,value);
+		int index = obj.Search(arr,0, size - 1, value);
 		if(index != -1)
 		{
 			System.out.println(value+" is present in array at index "+ index);
@@ -55,7 +56,4 @@ public class LinearSearch {
 		}
 		
 	}
-		
-
 }
-
