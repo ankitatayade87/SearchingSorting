@@ -2,77 +2,47 @@ package com.gratlearning.sorting;
 
 import java.util.Scanner;
 
-/*
- * 
- * Time Complexity: 
- * 
- * Best TC: O(n)
- * Avg TC: O(n^2)
- * Worst TC: O(n^2)
- * 
- * 
- */
-public class BubbleSort {
-	
-	public static void sort(int arr[])
+public class InsertionSort {
+
+	public static void InsertSort(int arr[])
 	{
-		int j , k = 0, temp;
-		
-		for(int i=0; i<arr.length; i++)
+		for(int i = 1; i < arr.length; i++)
 		{
-			for(k=1; k<(arr.length-i);k++)
+			int keyElement = arr[i];
+			int j = i;
+			
+			while(j>=1 && arr[j-1] > keyElement)
 			{
-				if(arr[k-1] > arr[k])
-				{
-					temp = arr[k-1];
-					arr[k-1] = arr[k];
-					arr[k] = temp;
-				}
-				
+				arr[j] = arr[j-1];
+				j--;
 			}
+			
+			//arr[j] = keyElement;			
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		int size;
 
 		Scanner sc = new Scanner(System.in);
-		
+
 		System.out.println("Enter Size of array");
 		size = sc.nextInt();
-		
+
 		int arr[] = new int[size];
 		System.out.println("Enter elements in array");
 		for(int i=0; i<size; i++)
 		{
 			arr[i] = sc.nextInt();			
 		}
-		
-		sort(arr);
-		
+
+		InsertSort(arr);
+
 		for(int i=0; i<size; i++)
 		{
 			System.out.println(arr[i]);		
 		}
+
+
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
